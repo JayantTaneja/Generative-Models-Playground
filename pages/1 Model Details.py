@@ -22,7 +22,7 @@ This model is a modification of the [WaveNet](https://www.deepmind.com/blog/wave
 The original WaveNet model architecture was bult for reading audio file(hence "wave"), however, our model works on natural language.
 
 Following is how the architecture is laid out:
-''')
+''', unsafe_allow_html  = True)
 
 
 st.markdown('''

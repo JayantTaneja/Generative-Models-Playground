@@ -27,7 +27,7 @@ def load_model(path):
     st.session_state.model_eng = model
 
 if "model_eng" not in st.session_state:
-    load_model("checkpoints/model_names2.pth")
+    load_model("checkpoints/model_english2.pth")
     st.session_state.model_type = "Default_eng"
     
     

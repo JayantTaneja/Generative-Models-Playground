@@ -53,7 +53,7 @@ with st.form("f1"):
     cols = st.columns(2)
 
     with cols[0]:
-        n_hidden = st.number_input("Number Of Hidden Units", min_value = 32, max_value = 256, step = 1, value = 128)
+        n_hidden = st.number_input("Number Of Hidden Units", min_value = 32, max_value = 512, step = 1, value = 128)
         n_embd = st.number_input("Embedding Dimensions", min_value = 2, max_value = 30, value = 24)
 
 

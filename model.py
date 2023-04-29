@@ -31,7 +31,7 @@ class WaveNet:
             self.set_parameters(**kwargs["hparameters"])
 
         if(pre_trained):
-            checkpoint = torch.load(kwargs["checkpoint"])
+            checkpoint = torch.load(kwargs["checkpoint"],  map_location=torch.device('cpu'))
             self.set_parameters(**checkpoint["hparameters"])
         
         else:

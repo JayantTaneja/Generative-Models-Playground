@@ -24,6 +24,10 @@ This is an interactive web app that aims to showcase an experimental character-l
 
 ## Features
 
+
+https://github.com/JayantTaneja/Generative-Models-Playground/assets/79043865/a8dd77c8-8db7-4e19-bc82-56fc8722855a
+
+
 - ### Train Your Own Character Level Language Model
     - Visit [Training Your Own Model](https://jayanttaneja-generative-models-playground.streamlit.app/Train)
     - Upload a text dataset (each line should contain only one (1) single training example)

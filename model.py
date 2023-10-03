@@ -9,8 +9,21 @@ import random
 random.seed(42)
 
 class WaveNet:
-    def set_parameters(self, words = [], chars = [], vocab_size = None, stoi = None, itos = None, 
-                             block_size = 8, n_embd = 24, n_hidden =  300, dropout = 0.2, k_size = 2):
+    def set_parameters(
+            self, 
+            words = [],chars = [], 
+            vocab_size = None, 
+            stoi = None, itos = None, 
+            block_size:int = 8, 
+            n_embd :int = 24, 
+            n_hidden:int =  300, 
+            dropout :int= 0.2, 
+            k_size :int= 2
+        )->None:
+        '''
+        Sets various parameters for the model
+        '''
+
         self.words = words
         self.chars = chars
         self.vocab_size = vocab_size
@@ -22,7 +35,15 @@ class WaveNet:
         self.dropout = dropout
         self.k_size = k_size
 
-    def __init__(self, lr = 0.001, out_dir:str = "model.pth", pre_trained = False,  device = 'cpu', **kwargs):
+    def __init__(
+            self, 
+            lr : int = 0.001, 
+            out_dir:str = "model.pth", 
+            pre_trained :bool = False,  
+            device : str = 'cpu', 
+            **kwargs
+        )->None:
+
         self.device = device
         self.out_dir = out_dir
         self.set_parameters()
@@ -107,15 +128,24 @@ class WaveNet:
     def build_dataset(self, path = None):
         if path:
             self.load_dataset(path)
+
         #build train and test splits of data
         n1 = int(0.8*len(self.words))
         n2 = int(0.9*len(self.words))
+        
         self.Xtr, self.Ytr = self._build_dataset_utility(self.words[:n1])
         self.Xdev,self.Ydev = self._build_dataset_utility(self.words[n1:n2])
         self.Xte, self.Yte = self._build_dataset_utility(self.words[n2:])
 
 
-    def train(self, max_steps = 200000, batch_size = 32, track_every = 5000, plot = False, save_every = 11000, chart = None):
+    def train(
+            self, 
+            max_steps : int = 200000, 
+            batch_size : int = 32, 
+            track_every : int = 5000,
+            save_every : int = 11000, 
+            chart : st.line_chart = None
+        )->None:
         
         self.build_dataset()
         self.model.train()
@@ -141,14 +171,10 @@ class WaveNet:
             self.optimizer.step()
             
             # track stats
-            if i % track_every == 0 or i==max_steps-1: # print every once in a while
+            if i % track_every == 0 or i==max_steps-1:
                 loss_v = self.split_loss('val')
                 loss_t = self.split_loss('train')
                 
-                if plot:
-                    loss_vals.append(loss_v)
-                    lossi.append(loss_t)
-                    
                 chart_data = pd.DataFrame({
                     "Train Loss" : [loss_t],
                     "Valid Loss" : [loss_v]
